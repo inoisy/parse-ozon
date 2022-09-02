@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "eslint": "7.32.0",
+    "pg": "^8.8.0",
+    "puppeteer": "^17.1.0",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-stealth": "^2.11.1",
+    "sequelize": "^6.21.4",
+    "sequelize-nested-sets": "^1.1.0"
+  }
+}
