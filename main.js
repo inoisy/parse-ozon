@@ -1,4 +1,3 @@
-
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const sequelize = require('./db.js');
@@ -32,7 +31,7 @@ async function main() {
                 text: item.innerText
             }));
     });
-    for(let parentCategory of parentCategories){
+    for(let parentCategory of parentCategories) {
         const parentCategoryItem = Category.build({ 
             name: parentCategory.text,
             link: parentCategory.link
@@ -44,9 +43,10 @@ async function main() {
             parentCategoryEl.dispatchEvent(mouseenterEvent);
         }, parentCategory);
 
-        if(parentCategory.link !== '/category/avtomobili-34458/'){
-            await page.waitForSelector('.s0c .cs2.s1c .cs0');
+        if(parentCategory.link === '/category/avtomobili-34458/'){
+            continue;
         }
+        await page.waitForSelector('.s0c .cs2.s1c .cs0');
         
         const categories = await page.evaluate(async () => {
             function parseLink(input) {
@@ -65,6 +65,7 @@ async function main() {
             });
             return categories;
         });
+
         for(let category of categories) {
             const categoryItem = Category.build({ 
                 name: category.parent.text,
